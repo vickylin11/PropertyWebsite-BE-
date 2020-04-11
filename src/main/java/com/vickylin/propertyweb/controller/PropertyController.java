@@ -4,6 +4,8 @@ import com.vickylin.propertyweb.entity.Property;
 import com.vickylin.propertyweb.service.PropertyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -33,14 +35,14 @@ public class PropertyController {
     }
 
     @GetMapping
-    public List<Property> getProperties(
-            @RequestParam(value = "q", required = false) String key) {
-        return  propertyService.getProperties(key);
+    public Page<Property> getProperties(
+            @RequestParam(value = "q", required = false) String key, Pageable pageable) {
+        return  propertyService.getProperties(key, pageable);
     }
 
     @GetMapping("/price")
     public List<Property> getPropertiesByPrice(
-            @RequestParam int max, @RequestParam int min) {
+            @RequestParam int max, int min) {
         return propertyService.getPropertiesByPrice(max, min);
     }
 
@@ -55,5 +57,11 @@ public class PropertyController {
     public void deleteProperty(
             @PathVariable Long id) {
         propertyService.deleteProperty(id);
+    }
+
+    @GetMapping("/type")
+    public Page<Property> getPropertiesByType(
+            @RequestParam String type, Pageable pageable) {
+        return propertyService.getPropertiesByType(type, pageable);
     }
 }

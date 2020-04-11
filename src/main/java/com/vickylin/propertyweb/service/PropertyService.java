@@ -4,8 +4,9 @@ import com.vickylin.propertyweb.entity.Property;
 import com.vickylin.propertyweb.repository.PropertyRepository;
 import com.vickylin.propertyweb.utils.NullAwareBeanUtilsBean;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,11 +25,11 @@ public class PropertyService {
         return propertyRepository.save(property);
     }
 
-    public List<Property> getProperties(String key) {
+    public Page<Property> getProperties(String key, Pageable pageable) {
         if(StringUtils.isNotBlank(key)) {
-            return propertyRepository.findAllByAddressContainingOrTypeContainingOrPurposeContaining(key, key , key);
+            return propertyRepository.findAllByAddressContainingOrTypeContainingOrPurposeContaining(key, key , key, pageable);
         } else {
-            return propertyRepository.findAll();
+            return propertyRepository.findAll(pageable);
         }
     }
 
@@ -49,5 +50,9 @@ public class PropertyService {
 
     public void deleteProperty(Long id) {
         propertyRepository.deleteById(id);
+    }
+
+    public Page<Property> getPropertiesByType(String type, Pageable pageable){
+        return propertyRepository.findAllByType(type, pageable);
     }
 }
