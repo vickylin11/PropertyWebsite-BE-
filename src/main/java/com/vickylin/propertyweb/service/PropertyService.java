@@ -1,6 +1,7 @@
 package com.vickylin.propertyweb.service;
 
 import com.vickylin.propertyweb.entity.Property;
+import com.vickylin.propertyweb.exception.ResourceNotFoundException;
 import com.vickylin.propertyweb.repository.PropertyRepository;
 import com.vickylin.propertyweb.utils.NullAwareBeanUtilsBean;
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +45,7 @@ public class PropertyService {
             beanUtils.copyProperties(originalProperty, newProperty);
             return propertyRepository.save(originalProperty);
         } else {
-            throw new Exception("Resource not found.");
+            throw new ResourceNotFoundException();
         }
     }
 

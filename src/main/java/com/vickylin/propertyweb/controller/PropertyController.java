@@ -1,6 +1,8 @@
 package com.vickylin.propertyweb.controller;
 
 import com.vickylin.propertyweb.entity.Property;
+import com.vickylin.propertyweb.entity.User;
+import com.vickylin.propertyweb.exception.UserPermissionException;
 import com.vickylin.propertyweb.service.PropertyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,13 +52,21 @@ public class PropertyController {
     @PatchMapping(path = "/{id}")
     public Property updateProperty(
             @PathVariable Long id,
-            @RequestBody Property property) throws Exception {
+            @RequestBody Property property,
+            @RequestHeader(value = "user_type") String userType) throws Exception {
+        if(!userType.equals(User.UserType.admin.name())) {
+            throw new UserPermissionException();
+        }
         return propertyService.updateProperty(id, property);
     }
 
     @DeleteMapping(path = "/{id}")
     public void deleteProperty(
-            @PathVariable Long id) {
+            @PathVariable Long id,
+            @RequestHeader(value = "user_type") String userType) throws Exception {
+        if(!userType.equals(User.UserType.admin.name())) {
+            throw new UserPermissionException();
+        }
         propertyService.deleteProperty(id);
     }
 
