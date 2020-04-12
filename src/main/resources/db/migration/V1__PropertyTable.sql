@@ -3,5 +3,6 @@ CREATE TABLE property (
     address VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     type VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     purpose VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-    price bigint(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+    price bigint(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+    image VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

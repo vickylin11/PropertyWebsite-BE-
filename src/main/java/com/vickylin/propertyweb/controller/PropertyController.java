@@ -40,7 +40,7 @@ public class PropertyController {
         return  propertyService.getProperties(key, pageable);
     }
 
-    @GetMapping("/price")
+    @GetMapping(path = "/price")
     public List<Property> getPropertiesByPrice(
             @RequestParam int max, int min) {
         return propertyService.getPropertiesByPrice(max, min);
