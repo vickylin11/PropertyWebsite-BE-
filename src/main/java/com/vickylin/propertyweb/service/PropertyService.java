@@ -28,7 +28,7 @@ public class PropertyService {
 
     public Page<Property> getProperties(String key, Pageable pageable) {
         if(StringUtils.isNotBlank(key)) {
-            return propertyRepository.findAllByAddressContainingOrTypeContainingOrPurposeContaining(key, key , key, pageable);
+            return propertyRepository.findAllByAddressContainingOrTypeContainingOrPurposeContainingOrNameContaining(key, key , key, key, pageable);
         } else {
             return propertyRepository.findAll(pageable);
         }
@@ -55,5 +55,13 @@ public class PropertyService {
 
     public Page<Property> getPropertiesByType(String type, Pageable pageable){
         return propertyRepository.findAllByType(type, pageable);
+    }
+
+    public Property getPropertyById(Long id) throws ResourceNotFoundException {
+        Optional<Property> opt = propertyRepository.findById(id);
+        if(!opt.isPresent()) {
+            throw new ResourceNotFoundException();
+        }
+        return opt.get();
     }
 }

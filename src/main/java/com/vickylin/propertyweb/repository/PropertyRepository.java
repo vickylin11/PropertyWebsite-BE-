@@ -14,7 +14,8 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
 
     Optional<Property> findById(Long id);
 
-    Page<Property> findAllByAddressContainingOrTypeContainingOrPurposeContaining(String addressKey, String typeKey, String purposeKey, Pageable pageable);
+    Page<Property> findAllByAddressContainingOrTypeContainingOrPurposeContainingOrNameContaining
+            (String addressKey, String typeKey, String purposeKey, String nameKey, Pageable pageable);
 
     List<Property> findAllByPriceBetween(int minPrice, int maxPrice);
 

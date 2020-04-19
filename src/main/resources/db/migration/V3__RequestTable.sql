@@ -1,5 +1,6 @@
 CREATE TABLE request (
     id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     content VARCHAR(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     user_id bigint(20) DEFAULT NULL,
     property_id bigint(20) DEFAULT NULL,

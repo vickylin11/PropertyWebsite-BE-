@@ -2,6 +2,7 @@ package com.vickylin.propertyweb.controller;
 
 import com.vickylin.propertyweb.entity.Property;
 import com.vickylin.propertyweb.entity.User;
+import com.vickylin.propertyweb.exception.ResourceNotFoundException;
 import com.vickylin.propertyweb.exception.UserPermissionException;
 import com.vickylin.propertyweb.service.PropertyService;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,12 @@ public class PropertyController {
     public List<Property> getPropertiesByPrice(
             @RequestParam int max, int min) {
         return propertyService.getPropertiesByPrice(max, min);
+    }
+
+    @GetMapping(path = "/{id}")
+    public Property getPropertyById(
+            @PathVariable Long id) throws ResourceNotFoundException {
+        return propertyService.getPropertyById(id);
     }
 
     @PatchMapping(path = "/{id}")
