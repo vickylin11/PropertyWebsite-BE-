@@ -49,9 +49,9 @@ public class UserController {
     }
 
     @PostMapping(path = "/login")
-    public void login(
+    public User login(
             @RequestParam String email, String token) throws InvalidUserException {
-        userService.login(email, token);
+        return userService.login(email, token);
     }
 
     @PostMapping(path = "/logout/{id}")

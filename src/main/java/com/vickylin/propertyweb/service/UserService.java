@@ -46,7 +46,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public void login(String email, String token) throws InvalidUserException {
+    public User login(String email, String token) throws InvalidUserException {
         Optional<User> opt = userRepository.findByEmail(email);
 
         if(!opt.isPresent() || !opt.get().getPassword().equals(token)) {
@@ -55,7 +55,7 @@ public class UserService {
 
         User user = opt.get();
         user.setLogin(true);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public void logout(Long id) throws ResourceNotFoundException {

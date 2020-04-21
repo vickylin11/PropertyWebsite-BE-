@@ -40,4 +40,8 @@ public class RequestService {
         request.setResolved(true);
         return requestRepository.save(request);
     }
+
+    public Page<Request> getRequestsByUserId(Pageable pageable, Long id) {
+        return requestRepository.findAllByUserId(pageable, id);
+    }
 }

@@ -39,7 +39,7 @@ public class RequestController {
         return requestService.getRequest(id);
     }
 
-    @GetMapping()
+    @GetMapping
     public Page<Request> getRequests(
             @RequestParam int size, int page,
             @RequestHeader(value = "user_type") String userType) throws UserPermissionException {
@@ -48,6 +48,13 @@ public class RequestController {
             throw new UserPermissionException();
         }
         return requestService.getRequests(pageable);
+    }
+
+    @GetMapping(path = "/my-requests")
+    public Page<Request> getMyRequests(
+            @RequestParam int size, int page, Long userId) {
+        Pageable pageable= PageRequest.of(page, size);
+        return requestService.getRequestsByUserId(pageable, userId);
     }
 
     @PostMapping(path = "/{id}/action/resolve")
