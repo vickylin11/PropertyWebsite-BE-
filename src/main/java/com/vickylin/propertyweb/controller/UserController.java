@@ -55,8 +55,8 @@ public class UserController {
     }
 
     @PostMapping(path = "/logout/{id}")
-    public void logout(
+    public User logout(
             @PathVariable Long id) throws ResourceNotFoundException {
-        userService.logout(id);
+        return userService.logout(id);
     }
 }

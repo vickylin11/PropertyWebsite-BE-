@@ -58,10 +58,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void logout(Long id) throws ResourceNotFoundException {
+    public User logout(Long id) throws ResourceNotFoundException {
         User user = getUserById(id);
         user.setLogin(false);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public User getUserById(Long id) throws ResourceNotFoundException {
