@@ -11,6 +11,7 @@
 	<groupId>com.vickylin</groupId>
 	<artifactId>propertyweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 	<name>propertyweb</name>
 	<description>Spring Boot Project</description>
 
@@ -38,6 +39,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -68,14 +70,34 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-		<finalName>docker-property-web</finalName>
-	</build>
+	<profiles>
+		<profile>
+			<id>best home</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>com.vickylin.propertyweb.PropertywebApplication</mainClass>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>repackage</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+					</plugin>
+				</plugins>
+				<finalName>best-home-web-be</finalName>
+			</build>
+			<properties>
+				<spring.profiles.active>
+					pro
+				</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

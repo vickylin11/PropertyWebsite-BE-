@@ -1,0 +1,10 @@
+server:
+  port: 5000
+spring:
+  datasource:
+    url: jdbc:mysql://best-home-database.cezrsrfqywxc.us-east-2.rds.amazonaws.com:3306/propertyweb
+    username: root
+    password: Abcd1234
+  profiles:
+    active: @spring.profiles.active@
+
