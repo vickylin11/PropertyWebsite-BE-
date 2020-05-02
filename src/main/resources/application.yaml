@@ -1,7 +1,14 @@
+spring:
+  datasource:
+    url: ${JDBC_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+#Elastic Beanstalk env
+#server:
+#  port: 5000
 #spring:
 #  datasource:
-#    url: ${JDBC_URL}
-#    username: ${DB_USERNAME}
-#    password: ${DB_PASSWORD}
-#  profiles:
-#    active: @spring.profiles.active@
+#    url: jdbc:mysql://best-home-database.cezrsrfqywxc.us-east-2.rds.amazonaws.com:3306/propertyweb
+#    username: root
+#    password: Abcd1234

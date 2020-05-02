@@ -70,34 +70,15 @@
 		</dependency>
 	</dependencies>
 
-	<profiles>
-		<profile>
-			<id>best home</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <mainClass>com.vickylin.propertyweb.PropertywebApplication</mainClass>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>repackage</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-					</plugin>
-				</plugins>
-				<finalName>best-home-web-be</finalName>
-			</build>
-			<properties>
-				<spring.profiles.active>
-					pro
-				</spring.profiles.active>
-			</properties>
-		</profile>
-	</profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <finalName>best-home-web-be</finalName>
+    </build>
 
 </project>
